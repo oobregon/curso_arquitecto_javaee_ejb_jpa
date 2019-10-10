@@ -11,5 +11,6 @@ public interface DaoMovimientos {
 	void altaMovimiento(Movimiento movimiento);
 	void eliminarMovimiento(int idMovimiento);
 	List<Movimiento> movimientosCuenta(int numCuenta);
+	List<Movimiento> movimientosCliente(int idCliente);
 	Movimiento obtenerMovimiento(int idMovimiento);
 }

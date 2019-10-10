@@ -1,11 +1,13 @@
 package daos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import model.Cliente;
 import model.Cuenta;
 import model.Movimiento;
 
@@ -36,5 +38,18 @@ public class DaoMovimientosImpl implements DaoMovimientos {
 	@Override
 	public Movimiento obtenerMovimiento(int idMovimiento) {
 		return em.find(Movimiento.class,idMovimiento);
+	}
+
+	@Override
+	public List<Movimiento> movimientosCliente(int idCliente) {
+		Cliente cliente = em.find(Cliente.class,idCliente);
+		List<Cuenta> cuentas = cliente.getCuentas();
+		List<Movimiento> movimientos = new ArrayList<Movimiento>();
+		for(Cuenta c : cuentas) {
+			for (Movimiento mov : c.getMovimientos()) {
+				movimientos.add(mov);
+			}
+		}
+		return movimientos;
 	}
 }
