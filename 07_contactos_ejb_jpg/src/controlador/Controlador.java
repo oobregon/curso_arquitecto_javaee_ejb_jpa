@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class Controlador
- * Este es el FrontController
  */
 @WebServlet("/Controlador")
 public class Controlador extends HttpServlet {
@@ -25,20 +24,20 @@ public class Controlador extends HttpServlet {
 		case "doContactos": 
 			// el include hace que la transferencia de petición sea de ida y vuelta
 			request.getRequestDispatcher("ContactosAction").include(request, response);
-			urlDestino = ((String)request.getAttribute("resultado")).equals("ok")?"listadoContactos.jsp":"sinContactos.html";
+			urlDestino = obtenerUrlContactos(request, response);
 			break;
 			
 		case "doAlta": 
 			// el include hace que la transferencia de petición sea de ida y vuelta. Se pasa el 
-			// control al servlet AltaAction, hace su trabajo y devuelve el control al FrontControler.
+			// control al servlet AltaAction, hace su trabajo y devuelve el control al FrontControler
 			request.getRequestDispatcher("AltaAction").include(request, response);
 			urlDestino = "entrada.html";
 			break;			
 			
 		case "doEliminar": 
-			// el include hace que la transferencia de petición sea de ida y vuelta
+			// transferencia de petición de ida y vuelta
 			request.getRequestDispatcher("EliminarAction").include(request, response);
-			urlDestino = "entrada.html";
+			urlDestino = obtenerUrlContactos(request, response);
 			break;			
 			
 		case "toDatos": 			
@@ -51,5 +50,11 @@ public class Controlador extends HttpServlet {
 			
 		}
 		request.getRequestDispatcher(urlDestino).forward(request, response);
+	}
+	
+	private String obtenerUrlContactos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("ContactosAction").include(request, response);
+		String url = ((String)request.getAttribute("resultado")).equals("ok")?"listadoContactos.jsp":"sinContactos.html";
+		return url;
 	}
 }

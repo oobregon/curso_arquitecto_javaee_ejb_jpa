@@ -26,6 +26,11 @@ public class Contacto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idContacto;
 
+	// Esta anotación de @Column(name = "edad") la he puesto yo. 
+	// El asistente no ha puesto esta anotaciones automáticamente porque entiende que solamente van a ser necesarias si 
+	// se cambia el nombre de estas variables miembro; se puede cambiar el nombre, pero en la anotación siempre tendría que
+	// apararecer el nombre real de la columna
+	@Column(name = "edad")
 	private int edad;
 
 	private String email;
