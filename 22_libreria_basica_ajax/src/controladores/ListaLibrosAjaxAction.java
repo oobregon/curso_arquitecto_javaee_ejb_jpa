@@ -1,4 +1,5 @@
 package controladores;
+hey
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,9 +47,9 @@ public class ListaLibrosAjaxAction extends HttpServlet {
 			obj.put("paginas", lib.getPaginas());
 			array.add(obj);
 		}
-		// La recomendación es que se envíe una cadena en lugar de un objeto o un array
-		// Si devolviéramos un objeto json tendríamos que cambiar la sentencia response.setContentType("text/plain") y añadir
-		// otro MIME que sería response.setContentType("text/objetJSON");
+		// La recomendaciÃ³n es que se envÃ­e una cadena en lugar de un objeto o un array
+		// Si devolviÃ©ramos un objeto json tendrÃ­amos que cambiar la sentencia response.setContentType("text/plain") y aÃ±adir
+		// otro MIME que serÃ­a response.setContentType("text/objetJSON");
 		return array.toJSONString();
 	}
 }
