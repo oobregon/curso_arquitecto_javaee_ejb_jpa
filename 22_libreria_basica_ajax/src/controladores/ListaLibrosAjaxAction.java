@@ -30,10 +30,13 @@ public class ListaLibrosAjaxAction extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idTema = Integer.parseInt(request.getParameter("idTema"));
 		List<Libro> libros = idTema==0?librosEjb.obtenerLibros():librosEjb.obtenerLibros(idTema);
-		// INcluir try con recursos.
-		PrintWriter salida = response.getWriter();
-		response.setContentType("text/plain");
-		salida.println(convertirAJson(libros));		
+		// INcluir try con recursos para que 
+		try (PrintWriter salida = response.getWriter()) {
+			response.setContentType("text/plain");
+			salida.println(convertirAJson(libros));			
+		} catch (IOException ioex) {
+			ioex.printStackTrace();
+		}					
 	}
 	
 	private String convertirAJson(List<Libro> libros) {
