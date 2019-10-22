@@ -12,14 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import daos.DaoContactos;
 import model.Contacto;
 
-/**
- * Servlet implementation class Alta
- */
+//Con la siguiente nomenclatura conseguiríamos que este mismo servlet atendiera a varias urls
+//@WebServlet(urlPatterns = {"/AltaAction","/Alta","otra_direccion","etc"})
 @WebServlet("/AltaAction")
-
-// Con la siguiente nomenclatura hacemos que este mismo servlet atienda a varias urls
-// @WebServlet(urlPatterns = {"/AltaAction","/Alta"})
-
 
 public class AltaAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
