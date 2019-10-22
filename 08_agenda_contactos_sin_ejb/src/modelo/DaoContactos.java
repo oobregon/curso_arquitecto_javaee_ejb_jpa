@@ -1,7 +1,5 @@
 package modelo;
 
-
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,7 +13,7 @@ import entidades.Contacto;
 public class DaoContactos {
 	static EntityManager em;
 	static {
-		EntityManagerFactory factory=Persistence.createEntityManagerFactory("13_contactos_jpa");
+		EntityManagerFactory factory=Persistence.createEntityManagerFactory("UPcontactos");
 		em=factory.createEntityManager();
 	}
 	
@@ -46,13 +44,9 @@ public class DaoContactos {
 		}
 		tx.commit();
 	}
-	public List<Contacto>  recuperarContactos() {
-		
-		
+	public List<Contacto>  recuperarContactos() {			
 		String jpql="Select c From Contacto c";
 		TypedQuery<Contacto> tq=em.createQuery(jpql,Contacto.class);
 		return tq.getResultList();
 	}
-
-
 }
